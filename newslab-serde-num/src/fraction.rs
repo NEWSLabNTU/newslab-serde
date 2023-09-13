@@ -9,23 +9,45 @@ use std::{
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Fraction {
+    pub is_negative: bool,
     pub num: u64,
     pub deno: NonZeroU64,
 }
 
 impl PartialOrd for Fraction {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        let reverse = match (self.is_negative, other.is_negative) {
+            (true, true) => true,
+            (true, false) => return Some(Ordering::Less),
+            (false, true) => return Some(Ordering::Greater),
+            (false, false) => false,
+        };
+
         let lhs = self.num * other.deno.get();
         let rhs = other.num * self.deno.get();
-        lhs.partial_cmp(&rhs)
+        let ord = lhs.partial_cmp(&rhs)?;
+
+        Some(if reverse { ord.reverse() } else { ord })
     }
 }
 
 impl Ord for Fraction {
     fn cmp(&self, other: &Self) -> Ordering {
+        let reverse = match (self.is_negative, other.is_negative) {
+            (true, true) => true,
+            (true, false) => return Ordering::Less,
+            (false, true) => return Ordering::Greater,
+            (false, false) => false,
+        };
         let lhs = self.num * other.deno.get();
         let rhs = other.num * self.deno.get();
-        lhs.cmp(&rhs)
+        let ord = lhs.cmp(&rhs);
+
+        if reverse {
+            ord.reverse()
+        } else {
+            ord
+        }
     }
 }
 
@@ -35,6 +57,7 @@ impl Fraction {
         Self {
             num: self.num / gcd,
             deno: NonZeroU64::new(self.deno.get() / gcd).unwrap(),
+            is_negative: self.is_negative,
         }
     }
 
@@ -46,6 +69,7 @@ impl Fraction {
         Some(Self {
             num: self.deno.get(),
             deno: NonZeroU64::new(self.num)?,
+            is_negative: self.is_negative,
         })
     }
 }
@@ -54,6 +78,10 @@ impl FromStr for Fraction {
     type Err = anyhow::Error;
 
     fn from_str(text: &str) -> Result<Self, Self::Err> {
+        let (is_negative, text) = match text.strip_prefix('-') {
+            Some(suffix) => (false, suffix),
+            None => (true, text),
+        };
         let mut tokens = text.split('/');
 
         let err = || {
@@ -70,13 +98,23 @@ impl FromStr for Fraction {
             return Err(err());
         }
 
-        Ok(Self { num, deno })
+        Ok(Self {
+            num,
+            deno,
+            is_negative,
+        })
     }
 }
 
 impl Display for Fraction {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}/{}", self.num, self.deno)
+        let Self {
+            is_negative,
+            num,
+            deno,
+        } = *self;
+        let sign = if is_negative { "-" } else { "" };
+        write!(f, "{sign}{num}/{deno}")
     }
 }
 
