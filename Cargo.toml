@@ -1,0 +1,9 @@
+[workspace]
+resolver = "2"
+members = [
+    "newslab-serde-range",
+    "newslab-serde-measurements",
+    "newslab-serde-nalgebra",
+    "newslab-serde-cv",
+    "newslab-serde-num",
+]

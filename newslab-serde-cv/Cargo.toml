@@ -1,0 +1,20 @@
+[package]
+name = "newslab-serde-cv"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.75"
+approx = "0.5.1"
+noisy_float = { version = "0.2.0", features = ["serde"] }
+serde = { version = "1.0.188", features = ["derive"] }
+slice-of-array = "0.3.2"
+opencv = { version = "0.84.5", optional = true, default-features = false }
+nalgebra = { version = "0.32.3", optional = true }
+cv-convert = { version = "0.24.1", default-features = false, optional = true }
+
+[features]
+with-opencv = ["opencv", "cv-convert/opencv_0-84"]
+with-nalgebra = ["nalgebra", "cv-convert/nalgebra_0-32"]
