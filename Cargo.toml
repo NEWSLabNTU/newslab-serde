@@ -1,6 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
+    "newslab-serde",
     "newslab-serde-range",
     "newslab-serde-measurements",
     "newslab-serde-nalgebra",
