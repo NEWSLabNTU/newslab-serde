@@ -19,7 +19,7 @@ To browse the API document for this project, please visite
 first. Compile the document and open it in browser.
 
 ```bash
-cargo doc --package newslab-serde --open
+make doc
 ```
 
 ## License
