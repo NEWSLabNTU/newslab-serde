@@ -1,6 +1,18 @@
 use crate::{CameraMatrix, DistortionCoefs};
 use serde::{Deserialize, Serialize};
 
+/// Represent intrinsic parameters for a camera.
+///
+/// ```rust
+/// # use newslab_serde_cv::CameraIntrinsicParams;
+/// let json = r#"{
+///     "camera_matrix": [[1.0, 0.0, 4.0],
+///                       [0.0, 1.5, 7.0],
+///                       [0.0, 0.0, 1.0]],
+///     "distortion_coefs": [1.0, 0.0, 0.0, 0.5, 0.0]
+/// }"#;
+/// let params: CameraIntrinsicParams = serde_json::from_str(json).unwrap();
+/// ```
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct CameraIntrinsicParams {
     pub camera_matrix: CameraMatrix,

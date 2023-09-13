@@ -1,3 +1,5 @@
+//! Data ser/deserialization library for computer vision.
+
 pub use camera_matrix::CameraMatrix;
 mod camera_matrix;
 

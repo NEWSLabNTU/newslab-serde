@@ -121,7 +121,7 @@ impl<'de> Deserialize<'de> for Matrix {
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct UncheckedMatrix {
+struct UncheckedMatrix {
     rows: usize,
     cols: usize,
     data: Vec<R64>,

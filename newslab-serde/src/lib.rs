@@ -1,3 +1,6 @@
+//! Data ser/deserialization utilities and type collections from
+//! NEWSLAB, National Taiwan University.
+
 pub use newslab_serde_common as common;
 pub use newslab_serde_cv as cv;
 #[cfg(feature = "with-measurements")]

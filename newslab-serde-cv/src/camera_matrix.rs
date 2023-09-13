@@ -2,6 +2,18 @@ use anyhow::ensure;
 use noisy_float::prelude::*;
 use serde::{Deserialize, Serialize};
 
+/// The camera matrix describes the mapping from 3D world points to 2D
+/// image points. The format is audited during ser/deserialization.
+///
+/// ```rust
+/// # use newslab_serde_cv::CameraMatrix;
+/// let json = "[
+///     [1.0, 0.0, 4.0],
+///     [0.0, 1.5, 7.0],
+///     [0.0, 0.0, 1.0]
+/// ]";
+/// let coefs: CameraMatrix = serde_json::from_str(json).unwrap();
+/// ```
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(try_from = "CameraMatrixUnchecked", into = "CameraMatrixUnchecked")]
 pub struct CameraMatrix(pub [[R64; 3]; 3]);

@@ -1,3 +1,6 @@
+//! Data ser/deserialization library for [nalgebra] crate.
+
+
 /// Serialize [Isometry3](nalgebra::Isometry3) as a (x, y, z) position
 /// and a triple of (roll, pitch, yaw) angles.
 ///
@@ -5,7 +8,6 @@
 /// # use serde::{Deserialize, Serialize};
 /// # use nalgebra::Isometry3;
 /// # use newslab_serde_nalgebra::isometry3_as_euler_angles;
-///
 /// #[derive(Serialize, Deserialize)]
 /// struct MyRotation {
 ///     #[serde(with = "isometry3_as_euler_angles")]
@@ -87,7 +89,6 @@ pub mod isometry3_as_euler_angles {
 /// # use serde::{Deserialize, Serialize};
 /// # use nalgebra::UnitQuaternion;
 /// # use newslab_serde_nalgebra::unit_quaternion_as_euler_angles;
-///
 /// #[derive(Serialize, Deserialize)]
 /// struct MyRotation {
 ///     #[serde(with = "unit_quaternion_as_euler_angles")]

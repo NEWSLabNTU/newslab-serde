@@ -1,3 +1,5 @@
+//! Data ser/deserialization library for [measurements](measurements) crate.
+
 use measurements::Angle;
 use num::{Float, NumCast};
 use serde::{Deserialize, Serialize};
@@ -68,6 +70,26 @@ impl EulerAngles {
     }
 }
 
+/// Serialization helper to en/decode an angle value with units.
+///
+/// ```rust
+/// # use newslab_serde_measurements::angle;
+/// # use serde::{Serialize, Deserialize};
+/// # use measurements::Angle;
+/// #[derive(Serialize, Deserialize)]
+/// struct MyAngle {
+///     #[serde(with = "angle")]
+///     angle1: Angle,
+///     #[serde(with = "angle")]
+///     angle2: Angle,
+/// }
+///
+/// let json = r#"{ "angle1": "3.0deg", "angle2": "-1.0rad" }"#;
+/// let MyAngle { angle1, angle2 } = serde_json::from_str(json).unwrap();
+///
+/// assert_eq!(angle1.as_degrees(), 3.0);
+/// assert_eq!(angle2.as_radians(), -1.0);
+/// ```
 pub mod angle {
     use measurements::Angle;
     use serde::{de::Error as _, Deserialize, Deserializer, Serialize, Serializer};
@@ -116,6 +138,26 @@ It must be a floating number plus a length unit, for example, '10.0deg' or '10.0
     }
 }
 
+/// Serialization helper to en/decode an length value with units.
+///
+/// ```rust
+/// # use newslab_serde_measurements::length;
+/// # use serde::{Serialize, Deserialize};
+/// # use measurements::Length;
+/// #[derive(Serialize, Deserialize)]
+/// struct MyLength {
+///     #[serde(with = "length")]
+///     len1: Length,
+///     #[serde(with = "length")]
+///     len2: Length,
+/// }
+///
+/// let json = r#"{ "len1": "2m", "len2": "-0.4mm" }"#;
+/// let MyLength { len1, len2 } = serde_json::from_str(json).unwrap();
+///
+/// assert_eq!(len1.as_meters(), 2.0);
+/// assert_eq!(len2.as_millimeters(), -0.4);
+/// ```
 pub mod length {
     use crate::ScientificNotation;
     use measurements::Length;

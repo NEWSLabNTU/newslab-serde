@@ -1,3 +1,5 @@
+//! Data ser/deserialization library for well-known concepts.
+
 pub use serde_bound::{optional_range, range};
 mod serde_bound {
     use serde::{Deserialize, Serialize};
@@ -68,8 +70,7 @@ mod serde_bound {
     /// ```rust
     /// # use std::ops::Bound;
     /// # use serde::{Serialize, Deserialize};
-    /// # use newslab_serde_range::range;
-    ///
+    /// # use newslab_serde_common::range;
     /// #[derive(Serialize, Deserialize)]
     /// struct MyRange {
     ///     #[serde(with = "range")]
@@ -123,8 +124,7 @@ mod serde_bound {
     /// ```rust
     /// # use std::ops::Bound;
     /// # use serde::{Serialize, Deserialize};
-    /// # use newslab_serde_range::optional_range;
-    ///
+    /// # use newslab_serde_common::optional_range;
     /// #[derive(Serialize, Deserialize)]
     /// struct MyRange {
     ///     #[serde(with = "optional_range")]
@@ -187,8 +187,7 @@ mod serde_bound {
 /// ```rust
 /// # use std::ops::Bound;
 /// # use serde::{Serialize, Deserialize};
-/// # use newslab_serde_range::non_empty_string;
-///
+/// # use newslab_serde_common::non_empty_string;
 /// #[derive(Serialize, Deserialize)]
 /// struct MyString {
 ///     #[serde(with = "non_empty_string")]

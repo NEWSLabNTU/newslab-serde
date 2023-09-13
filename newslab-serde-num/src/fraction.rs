@@ -7,6 +7,13 @@ use std::{
     str::FromStr,
 };
 
+/// Represent a rational number in the form if fractions `num/deno`.
+///
+/// ```rust
+/// # use newslab_serde_num::Fraction;
+/// let f1: Fraction = serde_json::from_str(r#" "-3/4" "#).unwrap();
+/// let f2: Fraction = serde_json::from_str(r#" "7/2" "#).unwrap();
+/// ```
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Fraction {
     pub is_negative: bool,
