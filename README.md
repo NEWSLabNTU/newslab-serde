@@ -25,4 +25,4 @@ cargo doc --package newslab-serde --open
 ## License
 
 This software is distributed under MIT license. Check the
-[LICENSE.txt] to see the full license text.
+[LICENSE.txt](LICENSE.txt) file to see the full license text.
