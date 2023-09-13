@@ -13,6 +13,7 @@ newslab-serde-num = { version = "0.1.0", path = "../newslab-serde-num" }
 newslab-serde-range = { version = "0.1.0", path = "../newslab-serde-range" }
 
 [features]
+full = ["with-opencv", "with-nalgebra", "with-measurements"]
 with-opencv = ["newslab-serde-cv/with-opencv"]
 with-nalgebra = ["newslab-serde-nalgebra", "newslab-serde-cv/with-nalgebra"]
 with-measurements = ["newslab-serde-measurements"]
