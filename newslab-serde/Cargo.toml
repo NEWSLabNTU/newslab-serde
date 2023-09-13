@@ -6,11 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+newslab-serde-common = { version = "0.1.0", path = "../newslab-serde-common" }
 newslab-serde-cv = { version = "0.1.0", path = "../newslab-serde-cv" }
 newslab-serde-measurements = { version = "0.1.0", path = "../newslab-serde-measurements", optional = true }
 newslab-serde-nalgebra = { version = "0.1.0", path = "../newslab-serde-nalgebra", optional = true }
 newslab-serde-num = { version = "0.1.0", path = "../newslab-serde-num" }
-newslab-serde-range = { version = "0.1.0", path = "../newslab-serde-range" }
 
 [features]
 full = ["with-opencv", "with-nalgebra", "with-measurements"]
