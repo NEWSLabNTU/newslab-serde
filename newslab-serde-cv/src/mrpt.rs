@@ -135,12 +135,12 @@ pub enum DistortionModel {
 
 #[derive(Debug, Clone, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
-pub enum ExtrinsicsData {
-    Quaternion(ExtrinsicsTransform),
-    Matrix(ExtrinsicsMatrix),
+pub enum ExtrinsicData {
+    Quaternion(ExtrinsicTransform),
+    Matrix(ExtrinsicMatrix),
 }
 
-impl ExtrinsicsData {
+impl ExtrinsicData {
     #[cfg(feature = "with-nalgebra")]
     pub fn to_na(&self) -> na::Isometry3<f64> {
         match self {
@@ -157,12 +157,12 @@ impl ExtrinsicsData {
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct ExtrinsicsTransform {
+pub struct ExtrinsicTransform {
     pub rot_wijk: [R64; 4],
     pub trans_xyz: [R64; 3],
 }
 
-impl ExtrinsicsTransform {
+impl ExtrinsicTransform {
     #[cfg(feature = "with-nalgebra")]
     pub fn to_na(&self) -> na::Isometry3<f64> {
         let Self {
@@ -183,12 +183,12 @@ impl ExtrinsicsTransform {
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct ExtrinsicsMatrix {
+pub struct ExtrinsicMatrix {
     pub rot: [[R64; 3]; 3],
     pub trans: [R64; 3],
 }
 
-impl ExtrinsicsMatrix {
+impl ExtrinsicMatrix {
     #[cfg(feature = "with-nalgebra")]
     pub fn to_na(&self) -> na::Isometry3<f64> {
         use slice_of_array::prelude::*;
