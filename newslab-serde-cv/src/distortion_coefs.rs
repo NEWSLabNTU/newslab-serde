@@ -45,6 +45,7 @@ impl Default for DistortionCoefs {
 }
 
 #[cfg(feature = "with-nalgebra")]
+#[allow(unused)]
 pub use with_nalgebra::*;
 
 #[cfg(feature = "with-nalgebra")]

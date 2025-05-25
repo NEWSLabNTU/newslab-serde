@@ -13,11 +13,11 @@ serde = { workspace = true }
 slice-of-array = "0.3.2"
 opencv = { version = "0.84.5", optional = true, default-features = false }
 nalgebra = { workspace = true, optional = true }
-cv-convert = { version = "0.24.1", default-features = false, optional = true }
+cv-convert = { workspace = true, optional = true }
 
 [features]
-with-opencv = ["opencv", "cv-convert/opencv_0-84"]
-with-nalgebra = ["nalgebra", "cv-convert/nalgebra_0-32"]
+with-opencv = ["opencv", "cv-convert/opencv"]
+with-nalgebra = ["nalgebra", "cv-convert/nalgebra"]
 
 [dev-dependencies]
 serde_json = { workspace = true }

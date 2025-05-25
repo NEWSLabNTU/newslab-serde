@@ -1,6 +1,5 @@
 //! Data ser/deserialization library for [nalgebra] crate.
 
-
 /// Serialize [Isometry3](nalgebra::Isometry3) as a (x, y, z) position
 /// and a triple of (roll, pitch, yaw) angles.
 ///
