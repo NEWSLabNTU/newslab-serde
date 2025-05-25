@@ -11,7 +11,7 @@ approx = "0.5.1"
 noisy_float = { version = "0.2.0", features = ["serde"] }
 serde = { workspace = true }
 slice-of-array = "0.3.2"
-opencv = { version = "0.84.5", optional = true, default-features = false }
+opencv = { workspace = true, optional = true }
 nalgebra = { workspace = true, optional = true }
 cv-convert = { workspace = true, optional = true }
 
